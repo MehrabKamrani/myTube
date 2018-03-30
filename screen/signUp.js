@@ -36,8 +36,11 @@ export default class signUp extends Component {
       }).then((response) => response.json())
           .then((responseJson) => {
 
-            // Showing response message coming from server after inserting records.
-            Alert.alert(responseJson);
+						Alert.alert(responseJson);
+
+            if (responseJson == 'Registered successfully. Please check your email for getting activation code') {
+              //this.props.navigation.navigate("TAC");
+            }
 
           }).catch((error) => {
             console.error(error);

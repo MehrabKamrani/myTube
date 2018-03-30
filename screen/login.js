@@ -47,6 +47,8 @@ export default class login extends Component {
 
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
 
         <View style={styles.MainContainer}>
@@ -70,9 +72,8 @@ export default class login extends Component {
             onPress={this.displayMessage} title="Submit" color="blue" />
 
           <TouchableOpacity
-            onPress={()=> navigate('SignUP')}
-            style={styles.signUpbutton}>
-            <Text style={styles.signUpBtnText}>"Don't have account yet?"</Text>
+            onPress={()=> navigate('SignUP')}>
+            <Text style={styles.signUpBtnText}>Do not have account yet?</Text>
           </TouchableOpacity>
 
         </View>
@@ -103,12 +104,9 @@ export default class login extends Component {
     padding: 50
   },
   signUpbutton:{
-		backgroundColor:'blue',
 		padding:10,margin:10,width:'95%'
 	},
-  signUpBtnText:{
-  color:'#fff',fontWeight:'bold'
-  },
+
 
   });
 
