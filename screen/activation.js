@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View,TouchableOpacity,TextInput,Button,Keyboard, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-export default class login extends Component {
+export default class activation extends Component {
 	static navigationOptions= ({navigation}) =>({
-		  title: 'Login',
+		  title: 'Account Activation',
 	});
   constructor(props) {
     super(props);
 
     this.state = {
-      TextInput_username: '',
-      TextInput_password: '',
+      TextInput_tac: '',
     };
   }
 
   displayMessage = () => {
-    fetch('http://192.168.0.14/videoStreaming/login.php', {
+    fetch('http://192.168.0.14/videoStreaming/check_tac.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -24,8 +23,7 @@ export default class login extends Component {
       },
       body: JSON.stringify({
 
-        userName : this.state.TextInput_username,
-        userPassword : this.state.TextInput_password,
+        tac : this.state.TextInput_tac,
 
       })
 
@@ -35,7 +33,7 @@ export default class login extends Component {
             // Showing response message coming from server after inserting records.
             Alert.alert(responseJson);
 
-            if (responseJson == 'Success') {
+            if (responseJson == 'Congratulations! Your account has been activated!') {
               this.props.navigation.navigate("UserProfile");
             }
 
@@ -58,23 +56,13 @@ export default class login extends Component {
           </Text>
 
           <TextInput style={styles.InputFlied}
-            placeholder="Enter Username"
+            placeholder="Enter TAC number"
             onChangeText={TextInputValue =>
-              this.setState({ TextInput_username: TextInputValue })}
+              this.setState({ TextInput_tac: TextInputValue })}
           />
 
-          <TextInput style={styles.InputFlied}
-            placeholder="Enter Password"
-            onChangeText={TextInputValue =>
-              this.setState({ TextInput_password: TextInputValue })}
-          />
           <Button style={styles.Buttons}
             onPress={this.displayMessage} title="Submit" color="blue" />
-
-          <TouchableOpacity
-            onPress={()=> navigate('SignUP')}>
-            <Text style={styles.signUpBtnText}>Do not have account yet?</Text>
-          </TouchableOpacity>
 
         </View>
 
@@ -111,4 +99,4 @@ export default class login extends Component {
   });
 
 
-AppRegistry.registerComponent('login', () => login);
+AppRegistry.registerComponent('activation', () => activation);
