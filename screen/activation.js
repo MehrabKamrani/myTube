@@ -52,7 +52,7 @@ export default class activation extends Component {
         <View style={styles.MainContainer}>
 
           <Text style={styles.TextTag}>
-              Login
+              TAC Number
           </Text>
 
           <TextInput style={styles.InputFlied}
