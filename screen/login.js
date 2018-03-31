@@ -16,7 +16,7 @@ export default class login extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://10.125.192.170/reactPHP/login.php', {
+    fetch('http://www.224tech.com/reactPhp/login.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

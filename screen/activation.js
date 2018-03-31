@@ -15,7 +15,7 @@ export default class activation extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://192.168.0.14/videoStreaming/check_tac.php', {
+    fetch('http://www.224tech.com/reactPhp/check_tac.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
