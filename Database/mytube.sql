@@ -56,7 +56,7 @@ CREATE TABLE `member` (
 
 CREATE TABLE `video` (
   `videoID` varchar(100) NOT NULL,
-  `titel` varchar(30) NOT NULL,
+  `title` varchar(30) NOT NULL,
   `descroption` varchar(30) NOT NULL,
   `approve` int(11) NOT NULL DEFAULT '0',
   `approveBy` varchar(50) NOT NULL,
