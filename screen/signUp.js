@@ -18,7 +18,7 @@ export default class signUp extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://192.168.0.14/videoStreaming/signUp.php', {
+    fetch('http://10.125.192.170/reactPHP/signUp.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
