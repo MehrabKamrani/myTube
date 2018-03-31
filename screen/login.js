@@ -32,12 +32,16 @@ export default class login extends Component {
     }).then((response) => response.json())
           .then((responseJson) => {
 
-            // Showing response message coming from server after inserting records.
-            Alert.alert(responseJson);
-
-            if (responseJson == 'Success') {
+            if (responseJson == 'Member') {
               this.props.navigation.navigate("UserProfile");
+							Alert.alert("Loged in successfully");
+            } else if (responseJson == 'Admin') {
+							this.props.navigation.navigate("AdminProfile");
+							Alert.alert("Loged in successfully");
+            } else {
+							Alert.alert("Wrong! Please try again");
             }
+
 
           }).catch((error) => {
             console.error(error);
