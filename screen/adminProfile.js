@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry,View,Text,StyleSheet } from 'react-native';
 
-export default class userProfile extends Component{
+export default class adminProfile extends Component{
 static navigationOptions= ({navigation}) =>({
 		  title: 'Welcome',
 	});
@@ -11,7 +11,7 @@ static navigationOptions= ({navigation}) =>({
 		return(
 	  	<View style={styles.container}>
 
-				<Text style={styles.pageName}>Member Profile</Text>
+				<Text style={styles.pageName}>Admin Profile</Text>
 
       </View>
 		);
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
 });
 
 
-AppRegistry.registerComponent('userProfile', () => userProfile);
+AppRegistry.registerComponent('adminProfile', () => adminProfile);
