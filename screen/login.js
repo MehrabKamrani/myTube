@@ -34,10 +34,10 @@ export default class login extends Component {
 
             if (responseJson == 'Member') {
               this.props.navigation.navigate("UserProfile");
-							Alert.alert("Loged in successfully");
+							Alert.alert("Logged in successfully");
             } else if (responseJson == 'Admin') {
 							this.props.navigation.navigate("AdminProfile");
-							Alert.alert("Loged in successfully");
+							Alert.alert("Logged in successfully");
             } else {
 							Alert.alert("Wrong! Please try again");
             }
