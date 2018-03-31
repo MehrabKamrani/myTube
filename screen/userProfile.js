@@ -1,35 +1,40 @@
-import React, { Component } from 'react';
-import { AppRegistry,View,Text,StyleSheet } from 'react-native';
+import React from 'react';
+import { Text, View ,AppRegistry} from 'react-native';
+import { TabNavigator } from 'react-navigation';
 
-export default class userProfile extends Component{
-static navigationOptions= ({navigation}) =>({
+
+class userProfile extends React.Component{
+	static navigationOptions= ({navigation}) =>({
 		  title: 'Welcome',
 	});
 
-	render(){
-		const { navigate } = this.props.navigation;
-		return(
-	  	<View style={styles.container}>
-
-				<Text style={styles.pageName}>Member Profile</Text>
-
-      </View>
-		);
-	}
+	render() {
+	    return (
+	      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+	        <Text>Settings!</Text>
+	       
+	      </View>
+	    );
+    }
 }
-const styles = StyleSheet.create({
-	container:{
-		display:'flex',alignItems:'center',
-		justifyContent:'center'
-	},
 
-	pageName:{
-		margin:10,fontWeight:'bold',
-		color:'#000', textAlign:'center'
-	},
+class UploadVideo extends React.Component{
+	render() {
+	    return (
+	      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+	        <Text>Settings!</Text>
+	       
+	      </View>
+	    );
+    }
+}
 
-
+export default TabNavigator({
+	VideoList: { screen: userProfile },
+  	UploadVideo: { screen: UploadVideo },
+}, 
+{
+  tabBarPosition: 'bottom',
 });
-
 
 AppRegistry.registerComponent('userProfile', () => userProfile);
