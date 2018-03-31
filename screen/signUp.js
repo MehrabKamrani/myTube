@@ -18,7 +18,7 @@ export default class signUp extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://10.125.193.121/mytube_react/signUp.php', {
+    fetch('http://192.168.0.14/videoStreaming/signUp.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -36,8 +36,11 @@ export default class signUp extends Component {
       }).then((response) => response.json())
           .then((responseJson) => {
 
-            // Showing response message coming from server after inserting records.
-            Alert.alert(responseJson);
+						Alert.alert(responseJson);
+
+            if (responseJson == 'Done. Please check your email for activation code') {
+              this.props.navigation.navigate("Activation");
+            }
 
           }).catch((error) => {
             console.error(error);
@@ -54,6 +57,12 @@ export default class signUp extends Component {
           <Text style={styles.TextTag}>
               Sign Up
           </Text>
+
+					<TextInput style={styles.InputFlied}
+            placeholder="Enter Fullname"
+            onChangeText={TextInputValue =>
+              this.setState({ TextInput_fullname: TextInputValue })}
+          />
 
           <TextInput style={styles.InputFlied}
             placeholder="Enter Username"
@@ -74,17 +83,6 @@ export default class signUp extends Component {
 
           />
 
-           <TextInput style={styles.InputFlied}
-            placeholder="Date Of Brith"
-            onChangeText={TextInputValue =>
-              this.setState({ TextInput_dob: TextInputValue })}
-          />
-
-           <TextInput style={styles.InputFlied}
-            placeholder="Gender"
-            onChangeText={TextInputValue =>
-              this.setState({ TextInput_gender: TextInputValue })}
-          />
           <Button style={styles.Buttons}
             onPress={this.displayMessage} title="Sign UP" color="blue" />
         </View>
