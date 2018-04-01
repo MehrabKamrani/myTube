@@ -34,7 +34,10 @@ export default TabNavigator({
   	UploadVideo: { screen: UploadVideo },
 }, 
 {
-  tabBarPosition: 'bottom',
+	
+  	tabBarPosition: 'bottom',
+  	swipeEnabled: false,
+	
 });
 
 AppRegistry.registerComponent('userProfile', () => userProfile);
