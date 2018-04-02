@@ -7,6 +7,7 @@ import VideoDetail from './VideoDetail';
 
 
 class userProfile extends React.Component{
+
 	state = { videos: [] };
 	static navigationOptions= ({navigation}) =>({
 		  title: 'Video List',
@@ -22,10 +23,11 @@ componentWillMount() {
 
   renderVideos() {
    return this.state.videos.map(video =>
-   	<VideoDetail key={video.VideoID} video={video}/>);
+   	<VideoDetail key={video.VideoID} video={video} />);
   }
 
   render() {
+
   console.log(this.state);
     return (
       <ScrollView>

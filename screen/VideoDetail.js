@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View, Image, Linking } from 'react-native';
+import { Text, View, Image, Linking, TouchableOpacity} from 'react-native';
+import {Video} from 'expo';
 import Card from './Card';
 import CardSection from './CardSection';
-//import Button from './Button';
+import signUp from './signUp';
 
 const VideoDetail = ({ video }) => {
 
@@ -12,19 +13,44 @@ const VideoDetail = ({ video }) => {
           thContainerStyle,
           headerTextStyle,
           imageStyle } = styles;
+
   return (
-    <Card>
+    //const { navigate } = this.props.navigation;
+    <TouchableOpacity
+    onPress={()=>navigate('signUp')}>
+      <Card>
+        <CardSection>
+          <View style={thContainerStyle}>
+            <Video
+              style={thumbnailStyle}
+              source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+            />
+          </View>
 
-      <CardSection>
+          <View style={headerContentSyle}>
+              <Text style={headerTextStyle}>{VideoID}</Text>
+              <Text>{Titel}</Text>
+          </View>
 
-        <View style={headerContentSyle}>
-            <Text style={headerTextStyle}>{VideoID}</Text>
-            <Text>{Titel}</Text>
-        </View>
+        </CardSection>  
 
-      </CardSection>      
+        <CardSection>
 
-    </Card>
+          <Video
+            source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+            rate={1.0}
+            volume={1.0}
+            isMuted={false}
+            resizeMode="cover"
+            isLooping
+            style={{ width: 390, height: 300 }}
+          />
+
+
+        </CardSection>    
+
+      </Card>
+    </TouchableOpacity>
   );
 };
 
