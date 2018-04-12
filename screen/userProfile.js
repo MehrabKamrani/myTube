@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry,StyleSheet, View, Alert, TextInput, Button, Text, Platform, TouchableOpacity, ListView, ActivityIndicator} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import Exponent, { Constants, ImagePicker, registerRootComponent } from 'expo';
+import Exponent, { Constants, ImagePicker, registerRootComponent, Video } from 'expo';
 import axios from 'axios';
 import VideoDetail from './VideoDetail';
 import WatchVideo from './WatchVideo';
@@ -22,11 +22,26 @@ class userProfile extends React.Component{
 
     }
   }
+
+  static navigationOptions= ({navigation}) =>({
+    title: 'Video List',
+  });
   
+  GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
+  this.props.navigation.navigate('WatchVideo', { 
+    VideoID : VideoID,
+    Title : Title,
+    Description : Description,
+    NumViews : NumViews,
+    VideoPath : VideoPath
+
+    });
+  }
+
   onPressButton = () => {
     console.log(this.state.contentSearch);
     let formData = new FormData();
-     formData.append('pokemonName', this.state.contentSearch);
+     formData.append('videoTitle', this.state.contentSearch);
     
   fetch('http://www.224tech.com/reactPhp/selectSpecificVideo.php', {
             method: 'POST',
@@ -97,7 +112,18 @@ class userProfile extends React.Component{
         <ListView
           style={styless.container}
           dataSource={this.state.dataSource}
-          renderRow={(data) => <Row {...data} />}
+          renderRow={(Data) => 
+            <View style={stylesss.container}>
+              <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${Data.VideoPath}` }}
+              resizeMode="cover"
+              shouldPlay={false}
+              style={stylesss.photo}
+              />
+              <Text style={stylesss.text} onPress={this.GetVideoIDFunction.bind(this,Data.VideoID)}>
+                {`Title:${Data.Title} Views: ${Data.NumViews}`}
+                
+              </Text>
+              </View>}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styless.separator} />}          
           renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}/>
       
@@ -121,6 +147,11 @@ class UploadVideo extends React.Component{
    }
 
  }
+
+ static navigationOptions= ({navigation}) =>({
+    title: 'Upload Video',
+  });
+  
 
  _pickImage = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
@@ -217,6 +248,24 @@ const UploadManager = StackNavigator({
   
 });
 
+const stylesss = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    marginLeft: 12,
+    fontSize: 18,
+  },
+  photo: {
+    height: 55,
+    width: 55,
+    borderRadius: 20,
+  },
+});
+
 const styless = StyleSheet.create({
   container: {
     flex: 1,
@@ -228,7 +277,7 @@ const styless = StyleSheet.create({
     backgroundColor: '#8E8E8E',
   },
   input: {
-    height: 30,    
+    height: 40,    
     paddingHorizontal: 8,
     fontSize: 16,
     backgroundColor: '#FFFFFF',

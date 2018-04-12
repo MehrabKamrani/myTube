@@ -9,7 +9,7 @@ import CardSection from './CardSection';
 
 const VideoDetail = ({ video }) => {
 
-  const { VideoID, Titel } = video;
+  const { VideoID, Title } = video;
   const { thumbnailStyle,
           headerContentSyle,
           thContainerStyle,
