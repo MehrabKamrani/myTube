@@ -1,35 +1,46 @@
 import React, { Component } from 'react';
-import { AppRegistry,View,Text,StyleSheet } from 'react-native';
+import { AppRegistry,View,Text,StyleSheet, Button } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // Version can be specified in package.json
+import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation';
 
-export default class adminProfile extends Component{
-static navigationOptions= ({navigation}) =>({
-		  title: 'Welcome',
-	});
+import AddMember from './addMember';
+import ShowAllMembers from './showAllMembers';
+import UpdateDeleteMember from './updateDeleteMember';
 
-	render(){
-		const { navigate } = this.props.navigation;
-		return(
-	  	<View style={styles.container}>
 
-				<Text style={styles.pageName}>Admin Profile</Text>
+class ManageVideos extends Component {
 
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Videos!</Text>
       </View>
-		);
-	}
+    );
+  }
 }
-const styles = StyleSheet.create({
-	container:{
-		display:'flex',alignItems:'center',
-		justifyContent:'center'
-	},
 
-	pageName:{
-		margin:10,fontWeight:'bold',
-		color:'#000', textAlign:'center'
-	},
+class ManageMembers extends Component {
 
-
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Button title="Add Member" onPress={() => this.props.navigation.navigate('AddMember')} />
+				<Button title="Update/Delete Member" onPress={() => this.props.navigation.navigate('ShowAllMembers')} />
+      </View>
+    );
+  }
+}
+const ManageMemberStack = StackNavigator({
+  ManageMembers: { screen: ManageMembers },
+  AddMember: { screen: AddMember },
+	ShowAllMembers: { screen: ShowAllMembers },
+	UpdateDeleteMember: { screen: UpdateDeleteMember },
 });
 
+
+export default TabNavigator({
+  ManageVideos: { screen: ManageVideos },
+  ManageMembers: { screen: ManageMemberStack },
+});
 
 AppRegistry.registerComponent('adminProfile', () => adminProfile);

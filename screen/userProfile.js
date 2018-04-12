@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { AppRegistry,View,Text,StyleSheet } from 'react-native';
-
+import { AppRegistry,View,Text,StyleSheet,ScrollView,TouchableOpacity } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 export default class userProfile extends Component{
 static navigationOptions= ({navigation}) =>({
-		  title: 'Welcome',
-	});
+  title: 'Welcome',
+});
 
 	render(){
 		const { navigate } = this.props.navigation;
@@ -18,17 +18,11 @@ static navigationOptions= ({navigation}) =>({
 	}
 }
 const styles = StyleSheet.create({
-	container:{
-		display:'flex',alignItems:'center',
-		justifyContent:'center'
-	},
-
-	pageName:{
-		margin:10,fontWeight:'bold',
-		color:'#000', textAlign:'center'
-	},
-
-
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 

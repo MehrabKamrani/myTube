@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, View, Button, Alert, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-export default class signUp extends Component {
+export default class addMember extends Component {
 	static navigationOptions= ({navigation}) =>({
-			title: 'Sign Up',
+			title: 'Add Member',
 	});
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export default class signUp extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://10.125.196.4/videoStreaming/signUp.php', {
+    fetch('http://10.125.196.4/videoStreaming/addMember.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -38,8 +38,8 @@ export default class signUp extends Component {
 
 						Alert.alert(responseJson);
 
-            if (responseJson == 'Done. Please check your email for activation code') {
-              this.props.navigation.navigate("Activation");
+            if (responseJson == 'Registered successfully!') {
+              this.props.navigation.goBack();
             }
 
           }).catch((error) => {
@@ -54,9 +54,6 @@ export default class signUp extends Component {
 
         <View style={styles.MainContainer}>
 
-          <Text style={styles.TextTag}>
-              Sign Up
-          </Text>
 
 					<TextInput style={styles.InputFlied}
             placeholder="Enter Fullname"
@@ -84,7 +81,7 @@ export default class signUp extends Component {
           />
 
           <Button style={styles.Buttons}
-            onPress={this.displayMessage} title="Sign UP" color="blue" />
+            onPress={this.displayMessage} title="Register" color="blue" />
         </View>
 
     );
@@ -113,4 +110,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('signUp', () => signUp);
+AppRegistry.registerComponent('addMember', () => addMember);
