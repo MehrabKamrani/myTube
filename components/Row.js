@@ -23,15 +23,14 @@ const styles = StyleSheet.create({
 
 const Row = (props) => (
   <View style={styles.container}>
-  
-   <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${props.VideoPath}` }}
-	  resizeMode="cover"
-	  shouldPlay={false}
-	  style={styles.photo}
-	/>
+   <Video source={{ uri: `http://10.125.200.143/reactNative/images/${props.pokemonImage}` }}
+    resizeMode="cover"
+    shouldPlay={false}
+    style={styles.photo}
+  />
    
     <Text style={styles.text}>
-      {`${props.Titel} ${props.NumViews}`}
+      {`${props.pokemonName} ${props.pokemonLevel}`}
     </Text>
   </View>
 );

@@ -28,7 +28,7 @@ class userProfile extends React.Component{
     let formData = new FormData();
      formData.append('pokemonName', this.state.contentSearch);
     
-  fetch('http://10.125.200.143/reactNative/selectSpecificVideo.php', {
+  fetch('http://www.224tech.com/reactPhp/selectSpecificVideo.php', {
             method: 'POST',
             body: formData,
         headers: {
@@ -93,14 +93,14 @@ class userProfile extends React.Component{
       color="#841584"
       accessibilityLabel="Learn more about this purple button"
     />
-      <TouchableOpacity onPress={this.props.navigation.navigate('WatchVideo')}>
+      
         <ListView
           style={styless.container}
           dataSource={this.state.dataSource}
           renderRow={(data) => <Row {...data} />}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styless.separator} />}          
           renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}/>
-      </TouchableOpacity>
+      
       </View>
     );
   }

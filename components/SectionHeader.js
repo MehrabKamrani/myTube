@@ -6,7 +6,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 8,
     justifyContent: 'center',
+
     backgroundColor: '#EAEAEA',
+
+    backgroundColor: '#cc3030',
+
   },
   text: {
     fontSize: 13,

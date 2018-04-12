@@ -16,7 +16,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text: {
+
     color: '#8E8E8E',
+
+    color: '#cc3030',
+
   },
 });
 
