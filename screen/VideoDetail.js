@@ -1,9 +1,11 @@
-import React from 'react';
-import { Text, View, Image, Linking, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, Image, Linking, TouchableOpacity, Alert} from 'react-native';
 import {Video} from 'expo';
 import Card from './Card';
 import CardSection from './CardSection';
-import signUp from './signUp';
+
+
+
 
 const VideoDetail = ({ video }) => {
 
@@ -15,9 +17,8 @@ const VideoDetail = ({ video }) => {
           imageStyle } = styles;
 
   return (
-    //const { navigate } = this.props.navigation;
-    <TouchableOpacity
-    onPress={()=>navigate('signUp')}>
+    //const { navigate } = this.props.navigation Alert.alert('Clicked');
+    
       <Card>
         <CardSection>
           <View style={thContainerStyle}>
@@ -35,7 +36,6 @@ const VideoDetail = ({ video }) => {
         </CardSection>  
 
         <CardSection>
-
           <Video
             source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
             rate={1.0}
@@ -45,12 +45,10 @@ const VideoDetail = ({ video }) => {
             isLooping
             style={{ width: 390, height: 300 }}
           />
-
-
         </CardSection>    
 
       </Card>
-    </TouchableOpacity>
+   
   );
 };
 
