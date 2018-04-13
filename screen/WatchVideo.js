@@ -30,7 +30,7 @@ export default class CustomScreen extends BaseScreen {
               shouldPlay: false,
               resizeMode: Video.RESIZE_MODE_CONTAIN,
               source: {
-                uri: 'http://www.224tech.com/reactPhp/videos/4dd11a8c-bb76-46be-88d0-da847c15652e.mp4',
+                uri: 'http://www.224tech.com/reactPhp/videos/e0ca2b5e-c8e7-4302-885e-07bca2fa6d3b.mp4',
               },
               isMuted: false,
             }}

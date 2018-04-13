@@ -12,7 +12,10 @@ import Footer from '../components/Footer'
 
 
 class userProfile extends React.Component{
-	constructor(props) {
+	static navigationOptions= ({navigation}) =>({
+    title: 'Video List',
+  });
+  constructor(props) {
     super(props);
   
   this.state = {
@@ -23,9 +26,7 @@ class userProfile extends React.Component{
     }
   }
 
-  static navigationOptions= ({navigation}) =>({
-    title: 'Video List',
-  });
+  
   
   GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
   this.props.navigation.navigate('WatchVideo', { 
@@ -133,7 +134,10 @@ class userProfile extends React.Component{
 }
 
 class UploadVideo extends React.Component{
-	
+	 static navigationOptions= ({navigation}) =>({
+    title: 'Upload Video',
+  });
+  
 	constructor(props) {
 
    super(props)
@@ -147,12 +151,6 @@ class UploadVideo extends React.Component{
    }
 
  }
-
- static navigationOptions= ({navigation}) =>({
-    title: 'Upload Video',
-  });
-  
-
  _pickImage = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Videos,
