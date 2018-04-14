@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, TouchableHighlight, Text,Alert } from 'react-native';
+import { ScrollView, View, TouchableHighlight, Text,Alert, TextInput} from 'react-native';
 import VideoPlayer from '@expo/videoplayer';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
@@ -39,6 +39,10 @@ export default class CustomScreen extends BaseScreen {
       Text_VideoPath: this.props.navigation.state.params.VideoPath,      
     })
 
+    
+  }
+
+  componentDidUpdate(){
     this.updatingViews(this) ;
   }
 
@@ -81,12 +85,13 @@ export default class CustomScreen extends BaseScreen {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
+        
           <VideoPlayer
             videoProps={{
               shouldPlay: false,
               resizeMode: Video.RESIZE_MODE_CONTAIN,
               source: {
-                uri: 'http://www.224tech.com/reactPhp/videos/{Text_VideoPath}',
+                uri: `http://www.224tech.com/reactPhp/videos/{this.state.Text_VideoPath}`,
               },
               isMuted: false,
             }}
@@ -104,6 +109,27 @@ export default class CustomScreen extends BaseScreen {
             switchToLandscape={this.switchToLandscape.bind(this)}
             switchToPortrait={this.switchToPortrait.bind(this)}
             playFromPositionMillis={0}
+          />
+          <TextInput placeholder="Video ID is sown here"
+            
+           value={this.state.Text_VideoID}
+   
+            onChangeText={ TextInputValue => this.setState({Text_VideoID : TextInputValue }) }
+   
+            underlineColorAndroid='transparent'
+   
+            
+          />
+
+          <TextInput placeholder="Video ID is sown here"
+            
+           value={this.state.Text_VideoPath}
+   
+            onChangeText={ TextInputValue => this.setState({Text_VideoPath : TextInputValue }) }
+   
+            underlineColorAndroid='transparent'
+   
+            
           />
         </ScrollView>
       </View>
