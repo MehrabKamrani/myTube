@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Alert, TextInput, Button, Text, Platform, TouchableOpacity, ListView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Alert, TextInput, Button, Text, Platform, 
+  TouchableOpacity, ListView, ActivityIndicator } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 
 
@@ -7,7 +8,7 @@ export default class ApproveVideo extends Component {
   
   constructor(props) {
     
-       super(props)
+       super(props);
     
        this.state = {
     
@@ -16,7 +17,7 @@ export default class ApproveVideo extends Component {
        }
     
      }
-
+     
      componentDidMount(){
 
       // Received Student Details Sent From Previous Activity and Set Into State.
@@ -33,7 +34,7 @@ export default class ApproveVideo extends Component {
 
     approveVideo = () =>{
 
-            fetch('http://10.125.195.247/reactPhp/approveVideo.php', {
+            fetch('http://www.224tech.com/reactPhp/approveVideo.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -66,7 +67,7 @@ export default class ApproveVideo extends Component {
 
     rejectVideo = () =>{
 
-            fetch('http://10.125.195.247/reactPhp/rejectVideo.php', {
+            fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

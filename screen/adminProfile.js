@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Alert, Platform, ActivityIndicator, ListView, AppRegistry,View,Text,StyleSheet } 
 from 'react-native';
 import b64 from 'base64-js';
+import {Video} from 'expo';
 import { StackNavigator } from 'react-navigation';
 
 
@@ -30,10 +31,10 @@ static navigationOptions= ({navigation}) =>({
 });
 
 
-GetVideoIDFunction=(VideoID, Titel, Description, NumViews, VideoPath)=>{
+GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
   this.props.navigation.navigate('ApproveVideo', { 
     VideoID : VideoID,
-    Titel : Titel,
+    Title : Title,
     Description : Description,
     NumViews : NumViews,
     VideoPath : VideoPath
@@ -41,21 +42,21 @@ GetVideoIDFunction=(VideoID, Titel, Description, NumViews, VideoPath)=>{
   });
 }
 
- ListViewItemSeparator = () => {
-       return (
-         <View
-           style={{
-             height: .5,
-             width: "100%",
-             backgroundColor: "#000",
-           }}
-         />
-       );
-     }
+ListViewItemSeparator = () => {
+ return (
+   <View
+   style={{
+     height: .5,
+     width: "100%",
+     backgroundColor: "#000",
+   }}
+   />
+   );
+}
 
 componentDidMount() {
 
- return fetch('http://10.125.195.247/reactPhp/videolistJson.php')
+ return fetch('http://www.224tech.com/reactPhp/videolistJson.php')
  .then((response) => response.json())
  .then((responseJson) => {
    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -84,66 +85,76 @@ render() {
 
     return (
     <View style={styles.container}>
+    
 
     <ListView
     dataSource={this.state.dataSource}
-   
-    renderRow={(rowData) => <Text style={styles.text}
-    onPress={this.GetVideoIDFunction.bind(
-          this,rowData.VideoID, 
-          rowData.Titel,  
-          rowData.Description,
-          rowData.NumViews,
-          rowData.VideoPath
-          )} > 
 
-          {rowData.VideoID} 
-          {rowData.Titel}
-      </Text>}
-      
-      renderSeparator= {this.ListViewItemSeparator}
-      renderFooter={() => <Footer />}
-      renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
+    renderRow={(rowData) => 
+      <View style={styles.container}>
+      <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${rowData.VideoPath}` }}
+      resizeMode="cover"
+      shouldPlay={false}
+      style={styles.photo}
       />
-      </View>
-      );
+
+      <Text style={styles.text}
+      onPress={this.GetVideoIDFunction.bind(
+        this,rowData.VideoID, 
+        rowData.Title,  
+        rowData.Description,
+        rowData.NumViews,
+        rowData.VideoPath
+        )} > 
+
+        {rowData.VideoID} 
+        {rowData.Title}
+        </Text>
+        </View>}
+
+        renderSeparator= {this.ListViewItemSeparator}
+        renderFooter={() => <Footer />}
+        renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
+        />
+        </View>
+        );
+      }
+
+
     }
 
 
-  }
-
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: 20,
-    },
-    separator: {
-      flex: 1,
-      height: StyleSheet.hairlineWidth,
-      backgroundColor: '#8E8E8E',
-    },
-    input: {
-      height: 30,
-      flex: 1,
-      paddingHorizontal: 8,
-      fontSize: 15,
-      backgroundColor: '#FFFFFF',
-      borderRadius: 2,
-    },
-  text: {
-    marginLeft: 12,
-    padding: 20,
-    fontSize: 16,
-  },
-  photo: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-  },
-  });
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        marginTop: 20,
+      },
+      separator: {
+        flex: 1,
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: '#8E8E8E',
+      },
+      input: {
+        height: 30,
+        flex: 1,
+        paddingHorizontal: 8,
+        fontSize: 15,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 2,
+      },
+      text: {
+        marginLeft: 12,
+        padding: 20,
+        fontSize: 16,
+      },
+      photo: {
+        height: 40,
+        width: 40,
+        borderRadius: 20,
+      },
+    });
 
 
 
-  AppRegistry.registerComponent('adminProfile', () => adminProfile);
+    AppRegistry.registerComponent('adminProfile', () => adminProfile);
 

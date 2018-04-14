@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View,TouchableOpacity,TextInput,Button,Keyboard, Alert } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View,TouchableOpacity,
+  TextInput,Button,Keyboard, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 export default class login extends Component {

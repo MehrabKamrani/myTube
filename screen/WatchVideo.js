@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, TouchableHighlight, Text } from 'react-native';
+import { ScrollView, View, TouchableHighlight, Text,Alert } from 'react-native';
 import VideoPlayer from '@expo/videoplayer';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
@@ -13,6 +13,62 @@ var styles = {
 };
 
 export default class CustomScreen extends BaseScreen {
+  constructor(props) {
+
+       super(props);
+
+       this.state = {
+
+         Text_VideoID: '',
+         Text_VideoPath: ''
+       }
+
+  }
+
+  static navigationOptions =
+    {
+       title: 'Watch Video',
+  };
+
+
+  componentDidMount(){
+
+    // Received Student Details Sent From Previous Activity and Set Into State.
+    this.setState({
+      Text_VideoID : this.props.navigation.state.params.VideoID,
+      Text_VideoPath: this.props.navigation.state.params.VideoPath,      
+    })
+
+    this.updatingViews(this) ;
+  }
+
+  updatingViews =() =>{
+
+          fetch('http://www.224tech.com/reactPhp/slectVideo.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+
+            videoID : this.state.Text_VideoID,
+
+          })
+
+          }).then((response) => response.json())
+              .then((responseJson) => {
+
+                // Showing response message coming from server updating records.
+                Alert.alert(responseJson);                 
+                
+
+              }).catch((error) => {
+                console.error(error);
+              });
+  }
+
+
   render() {
     const COLOR = '#92DCE5';
     const icon = (name, size = 36) => () =>
@@ -30,7 +86,7 @@ export default class CustomScreen extends BaseScreen {
               shouldPlay: false,
               resizeMode: Video.RESIZE_MODE_CONTAIN,
               source: {
-                uri: 'http://www.224tech.com/reactPhp/videos/e0ca2b5e-c8e7-4302-885e-07bca2fa6d3b.mp4',
+                uri: 'http://www.224tech.com/reactPhp/videos/{Text_VideoPath}',
               },
               isMuted: false,
             }}
