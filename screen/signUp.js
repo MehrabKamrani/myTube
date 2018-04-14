@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, View, Button, Alert, StyleSheet } from 'react-native';
+import { AppRegistry, Text, TextInput, ScrollView, View, Button, Alert, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 export default class signUp extends Component {
@@ -52,7 +52,7 @@ export default class signUp extends Component {
   render() {
     return (
 
-        <View style={styles.MainContainer}>
+        <ScrollView style={styles.MainContainer}>
 
           <Text style={styles.TextTag}>
               Sign Up
@@ -85,7 +85,7 @@ export default class signUp extends Component {
 
           <Button style={styles.Buttons}
             onPress={this.displayMessage} title="Sign UP" color="blue" />
-        </View>
+        </ScrollView>
 
     );
   }
@@ -94,7 +94,7 @@ export default class signUp extends Component {
 const styles = StyleSheet.create({
   MainContainer: {
     flex:1,
-    justifyContent: 'center',
+    
     margin:30
   },
   TextTag:{

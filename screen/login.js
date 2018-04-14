@@ -95,7 +95,10 @@ export default class login extends Component {
   MainContainer: {
     flex:1,
     justifyContent: 'center',
-    margin:30
+    marginTop:30,
+    marginLeft:30,
+    marginRight:30,
+    marginBottom:50
   },
   TextTag:{
     fontSize: 27,
