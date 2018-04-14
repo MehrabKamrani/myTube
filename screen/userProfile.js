@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry,StyleSheet, View, Alert, TextInput, Button, Text, Platform, TouchableOpacity, ListView, ActivityIndicator} from 'react-native';
+import { AppRegistry,StyleSheet, View, Alert, TextInput, Button, Text, 
+  Platform, TouchableOpacity, ListView, ActivityIndicator} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Exponent, { Constants, ImagePicker, registerRootComponent, Video } from 'expo';
 //import axios from 'axios';
@@ -11,7 +12,7 @@ import SectionHeader from '../components/SectionHeader'
 import Footer from '../components/Footer'
 
 
-class userProfile extends React.Component{
+class userProfile extends Component{
 	static navigationOptions= ({navigation}) =>({
     title: 'Video List',
   });
@@ -26,15 +27,25 @@ class userProfile extends React.Component{
     }
   }
 
-  
-  
+  ListViewItemSeparator = () => {
+   return (
+     <View
+     style={{
+       height: .5,
+       width: "100%",
+       backgroundColor: "#000",
+     }}
+     />
+     );
+  }
+
   GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
-  this.props.navigation.navigate('WatchVideo', { 
-    VideoID : VideoID,
-    Title : Title,
-    Description : Description,
-    NumViews : NumViews,
-    VideoPath : VideoPath
+    this.props.navigation.navigate('WatchVideo', { 
+      VideoID : VideoID,
+      Title : Title,
+      Description : Description,
+      NumViews : NumViews,
+      VideoPath : VideoPath
 
     });
   }
@@ -70,21 +81,21 @@ class userProfile extends React.Component{
   
   componentDidMount() {
     
-       return fetch('http://www.224tech.com/reactPhp/videolistJson.php')
-         .then((response) => response.json())
-         .then((responseJson) => {
-           let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-           this.setState({
-         isLoading: false,
-             dataSource: ds.cloneWithRows(responseJson),
-           }, function() {
-             // In this block you can do something with new state.
-           });
-         })
-         .catch((error) => {
-           console.error(error);
-         });
-     }
+   return fetch('http://www.224tech.com/reactPhp/videolistJson.php')
+     .then((response) => response.json())
+     .then((responseJson) => {
+       let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+       this.setState({
+     isLoading: false,
+         dataSource: ds.cloneWithRows(responseJson),
+       }, function() {
+         // In this block you can do something with new state.
+       });
+     })
+     .catch((error) => {
+       console.error(error);
+     });
+}
 
   render() {
     
@@ -98,36 +109,44 @@ class userProfile extends React.Component{
     
     return (
       <View style={styless.container}>
-    <TextInput
-      style={styless.input}
-      placeholder="Search Text..."
-      onChangeText={(text) => this.setState({ contentSearch : text })}
-    />
-    <Button
-      onPress={this.onPressButton}
-      title="Search"
-      color="#841584"
-      accessibilityLabel="Learn more about this purple button"
-    />
+        <TextInput
+          style={styless.input}
+          placeholder="Search Text..."
+          onChangeText={(text) => this.setState({ contentSearch : text })}
+        />
+        <Button
+          onPress={this.onPressButton}
+          title="Search"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       
         <ListView
           style={styless.container}
           dataSource={this.state.dataSource}
-          renderRow={(Data) => 
+          renderRow={(rowData) => 
             <View style={stylesss.container}>
-              <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${Data.VideoPath}` }}
-              resizeMode="cover"
-              shouldPlay={false}
-              style={stylesss.photo}
-              />
-              <Text style={stylesss.text} onPress={this.GetVideoIDFunction.bind(this,Data.VideoID)}>
-                {`Title:${Data.Title} Views: ${Data.NumViews}`}
-                
+              <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${rowData.VideoPath}` }}
+                resizeMode="cover"
+                shouldPlay={false}
+                style={stylesss.photo}
+                />
+              <Text style={stylesss.text} 
+                onPress={this.GetVideoIDFunction.bind(
+                this,rowData.VideoID, 
+                rowData.Title,  
+                rowData.Description,
+                rowData.NumViews,
+                rowData.VideoPath
+              )}> 
+                {`Title:${rowData.Title} Views: ${rowData.NumViews}`}                
               </Text>
-              </View>}
-          renderSeparator={(sectionId, rowId) => <View key={rowId} style={styless.separator} />}          
-          renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}/>
-      
+            </View>
+          }
+          renderSeparator={this.ListViewItemSeparator}          
+          renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
+          />
+
       </View>
     );
   }
