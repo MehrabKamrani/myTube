@@ -23,7 +23,7 @@ export default class ShowAllMembers extends Component {
 
   componentDidMount() {
 
-       return fetch('http://10.125.196.4/videoStreaming/showAllMember.php')
+       return fetch('http://192.168.0.5/videoStreaming/showAllMember.php')
          .then((response) => response.json())
          .then((responseJson) => {
            let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

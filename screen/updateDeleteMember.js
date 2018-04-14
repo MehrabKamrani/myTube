@@ -30,7 +30,7 @@ export default class UpdateDeleteMember extends Component {
         TextInput_Username : this.props.navigation.state.params.username,
         TextInput_Fullname: this.props.navigation.state.params.name,
         TextInput_Email: this.props.navigation.state.params.email,
-        TextInput_Password: this.props.navigation.state.params.password,
+        TextInput_Password: (this.props.navigation.state.params.isVerified + '1'),
         Switch_IsVerified: (this.props.navigation.state.params.isVerified == 1),
 
       })
@@ -44,7 +44,7 @@ export default class UpdateDeleteMember extends Component {
 
     UpdateMemberRecord = () =>{
 
-            fetch('http://10.125.196.4/videoStreaming/updateMember.php', {
+            fetch('http://192.168.0.5/videoStreaming/updateMember.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -89,7 +89,7 @@ export default class UpdateDeleteMember extends Component {
 
     DeleteMemberRecord = () =>{
 
-          fetch('http://10.125.196.4/videoStreaming/deleteMember.php', {
+          fetch('http://192.168.0.5/videoStreaming/deleteMember.php', {
           method: 'POST',
           headers: {
           'Accept': 'application/json',

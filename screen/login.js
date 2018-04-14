@@ -16,7 +16,7 @@ export default class login extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://10.125.196.4/videoStreaming/login.php', {
+    fetch('http://www.224tech.com/reactPhp/login.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -34,10 +34,10 @@ export default class login extends Component {
 
             if (responseJson == 'Member') {
               this.props.navigation.navigate("UserProfile");
-							Alert.alert("Loged in successfully");
+							Alert.alert("Logged in successfully");
             } else if (responseJson == 'Admin') {
 							this.props.navigation.navigate("AdminProfile");
-							Alert.alert("Loged in successfully");
+							Alert.alert("Logged in successfully");
             } else {
 							Alert.alert("Wrong! Please try again");
             }
