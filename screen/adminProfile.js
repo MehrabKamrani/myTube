@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Alert, Platform, ActivityIndicator, ListView, AppRegistry,View,Text,StyleSheet, Button }
 from 'react-native';
 import b64 from 'base64-js';
+import {Video} from 'expo';
 import { StackNavigator, TabNavigator, SwitchNavigator} from 'react-navigation';
 
 import AddMember from './addMember';
@@ -32,46 +33,46 @@ class ManageVideos extends Component {
   });
 
 
-  GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
-    this.props.navigation.navigate('ApproveVideo', {
-      VideoID : VideoID,
-      Title : Title,
-      Description : Description,
-      NumViews : NumViews,
-      VideoPath : VideoPath
+GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
+  this.props.navigation.navigate('ApproveVideo', {
+    VideoID : VideoID,
+    Title : Title,
+    Description : Description,
+    NumViews : NumViews,
+    VideoPath : VideoPath
 
     });
   }
 
-   ListViewItemSeparator = () => {
-         return (
-           <View
-             style={{
-               height: .5,
-               width: "100%",
-               backgroundColor: "#000",
-             }}
-           />
-         );
-       }
+ListViewItemSeparator = () => {
+ return (
+   <View
+   style={{
+     height: .5,
+     width: "100%",
+     backgroundColor: "#000",
+   }}
+   />
+   );
+}
 
-  componentDidMount() {
+componentDidMount() {
 
-   return fetch('http://192.168.0.5/videoStreaming/videolistJson.php')
-   .then((response) => response.json())
-   .then((responseJson) => {
-     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-     this.setState({
-       isLoading: false,
-       dataSource: ds.cloneWithRows(responseJson),
-     }, function() {
-               // In this block you can do something with new state.
-             });
-   })
-   .catch((error) => {
-     console.error(error);
-   });
-  }
+ return fetch('http://www.224tech.com/reactPhp/videolistJson.php')
+ .then((response) => response.json())
+ .then((responseJson) => {
+   let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+   this.setState({
+     isLoading: false,
+     dataSource: ds.cloneWithRows(responseJson),
+   }, function() {
+             // In this block you can do something with new state.
+           });
+ })
+ .catch((error) => {
+   console.error(error);
+ });
+}
 
 
 
@@ -87,27 +88,38 @@ class ManageVideos extends Component {
       return (
       <View style={styles.container}>
 
+
       <ListView
       dataSource={this.state.dataSource}
 
-      renderRow={(rowData) => <Text style={styles.text}
-      onPress={this.GetVideoIDFunction.bind(
-            this,rowData.VideoID,
-            rowData.Title,
-            rowData.Description,
-            rowData.NumViews,
-            rowData.VideoPath
-            )} >
-
-            {rowData.VideoID}
-            {rowData.Title}
-        </Text>}
-
-        renderSeparator= {this.ListViewItemSeparator}
-        renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
+      renderRow={(rowData) =>
+        <View style={styles.container}>
+        <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${rowData.VideoPath}` }}
+        resizeMode="cover"
+        shouldPlay={false}
+        style={styles.photo}
         />
-        </View>
-        );
+
+        <Text style={styles.text}
+        onPress={this.GetVideoIDFunction.bind(
+          this,rowData.VideoID,
+          rowData.Title,
+          rowData.Description,
+          rowData.NumViews,
+          rowData.VideoPath
+          )} >
+
+          {rowData.VideoID}
+          {rowData.Title}
+          </Text>
+          </View>}
+
+          renderSeparator= {this.ListViewItemSeparator}
+          renderFooter={() => <Footer />}
+          renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
+          />
+          </View>
+          );
       }
 
 
