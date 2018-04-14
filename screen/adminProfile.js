@@ -12,6 +12,8 @@ import UpdateDeleteMember from './updateDeleteMember';
 //import Row from '../components/Row'
 import ApproveVideo from './ApproveVideo'
 import SectionHeader from '../components/SectionHeader'
+import Footer from '../components/Footer'
+
 
 class ManageVideos extends Component {
 
@@ -59,7 +61,7 @@ ListViewItemSeparator = () => {
 componentDidMount() {
 
 
- return fetch('http://192.168.1.103/reactPhp/videolistJson.php')
+ return fetch('http://192.168.0.5/videoStreaming/videolistJson.php')
 
  .then((response) => response.json())
  .then((responseJson) => {
@@ -96,7 +98,7 @@ componentDidMount() {
 
     renderRow={(rowData) =>
       <View style={styles.container}>
-      <Video source={{ uri: `http://192.168.1.103/reactPhp/images/${rowData.VideoPath}` }}
+      <Video source={{ uri: `http://192.168.0.5/videoStreaming/images/${rowData.VideoPath}` }}
 
       resizeMode="cover"
       shouldPlay={false}
