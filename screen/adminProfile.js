@@ -58,7 +58,9 @@ ListViewItemSeparator = () => {
 
 componentDidMount() {
 
- return fetch('http://www.224tech.com/reactPhp/videolistJson.php')
+
+ return fetch('http://192.168.1.103/reactPhp/videolistJson.php')
+
  .then((response) => response.json())
  .then((responseJson) => {
    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -92,35 +94,37 @@ componentDidMount() {
       <ListView
       dataSource={this.state.dataSource}
 
-      renderRow={(rowData) =>
-        <View style={styles.container}>
-        <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${rowData.VideoPath}` }}
-        resizeMode="cover"
-        shouldPlay={false}
-        style={styles.photo}
+    renderRow={(rowData) =>
+      <View style={styles.container}>
+      <Video source={{ uri: `http://192.168.1.103/reactPhp/images/${rowData.VideoPath}` }}
+
+      resizeMode="cover"
+      shouldPlay={false}
+      style={styles.photo}
+      />
+
+      <Text style={styles.text}
+      onPress={this.GetVideoIDFunction.bind(
+        this,rowData.VideoID,
+        rowData.Title,
+        rowData.Description,
+        rowData.NumViews,
+        rowData.VideoPath
+        )} >
+
+        {rowData.VideoID}
+        {rowData.Title}
+        </Text>
+        </View>}
+
+        renderSeparator= {this.ListViewItemSeparator}
+        renderFooter={() => <Footer />}
+        renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
         />
 
-        <Text style={styles.text}
-        onPress={this.GetVideoIDFunction.bind(
-          this,rowData.VideoID,
-          rowData.Title,
-          rowData.Description,
-          rowData.NumViews,
-          rowData.VideoPath
-          )} >
-
-          {rowData.VideoID}
-          {rowData.Title}
-          </Text>
-          </View>}
-
-          renderSeparator= {this.ListViewItemSeparator}
-          renderFooter={() => <Footer />}
-          renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
-          />
-          </View>
-          );
-      }
+      </View>
+      );
+  }
 
 
 
