@@ -5,7 +5,7 @@ import { StackNavigator, NavigationActions } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
 import { Video } from 'expo';
-import VideoPlayer from 'react-native-video-controls';
+//import VideoPlayer from 'react-native-video-controls';
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
 
@@ -39,9 +39,11 @@ export default class ApproveVideo extends BaseScreen {
  componentDidMount(){
 
       // Received Student Details Sent From Previous Activity and Set Into State.
-      this.setState({
+      this.setState({ 
         videoID : this.props.navigation.state.params.VideoID,
+
         videoPath : ('http://www.224tech.com/reactPhp/videos/' + this.props.navigation.state.params.VideoPath),
+
       })
 
     }
@@ -57,32 +59,33 @@ export default class ApproveVideo extends BaseScreen {
      return _path;
    }
 
-   approveVideo = () =>{
 
 
-    fetch('http://www.224tech.com/reactPhp/approveVideo.php', {
 
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+              approveVideo = () =>{
 
-        videoID : this.state.videoID,
+                fetch('http://www.224tech.com/reactPhp/approveVideo.php', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
 
-      })
+                    videoID : this.state.videoID,
 
-    }).then((response) => response.json())
-    .then((responseJson) => {
+                  })
+
+                }).then((response) => response.json())
+                .then((responseJson) => {
 
                   // Showing response message coming from server updating records.
                   Alert.alert(responseJson);
 
-                  if (responseJson == 'Approved') {
+                  if (responseJson == 'Success') {
                     this.props.navigation.dispatch(NavigationActions.reset({
                       index: 0,
-                      actions: [NavigationActions.navigate({ routeName: 'AdminProfile'})]
+                      actions: [NavigationActions.navigate({ routeName: 'ManageVideos'})]
                     }));
                   }
 
@@ -92,8 +95,9 @@ export default class ApproveVideo extends BaseScreen {
 
               }
 
-              rejectVideo = () =>{
 
+<<<<<<< HEAD
+              rejectVideo = () =>{
                 fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
 
                   method: 'POST',
@@ -116,7 +120,7 @@ export default class ApproveVideo extends BaseScreen {
                   if (responseJson == 'Success') {
                     this.props.navigation.dispatch(NavigationActions.reset({
                       index: 0,
-                      actions: [NavigationActions.navigate({ routeName: 'AdminProfile'})]
+                      actions: [NavigationActions.navigate({ routeName: 'ManageVideos'})]
                     }));
                   }
 
@@ -130,6 +134,8 @@ export default class ApproveVideo extends BaseScreen {
               render() {
                 const { width } = Dimensions.get('window');
                 const COLOR = '#92DCE5';
+                let path = "bb.mp4";
+                console.log = path;
                 const icon = (name, size = 36) => () =>
                 <Ionicons
                 name={name}
@@ -140,6 +146,7 @@ export default class ApproveVideo extends BaseScreen {
                 return (
                   <View style={styles.Maincontainer}>
                   <ScrollView style={styles.container}>
+
                   <Video
                   	  source={{ uri: `${this.state.videoPath}` }}
                       shouldPlay={this.state.shouldPlay}
@@ -180,11 +187,14 @@ export default class ApproveVideo extends BaseScreen {
                   />
 
 
+
                   <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.approveVideo} >
 
                   <Text style={styles.TextStyle}> APPROVE  </Text>
 
                   </TouchableOpacity>
+
+
 
                   <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.rejectVideo} >
 
@@ -192,6 +202,8 @@ export default class ApproveVideo extends BaseScreen {
 
                   </TouchableOpacity>
 
+
+                 
 
                   </View>
 
