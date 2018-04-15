@@ -65,10 +65,10 @@ class ManageVideos extends Component {
     ManageMembers: { screen: ManageMemberStack },
   },
     {
-  
+
     tabBarPosition: 'bottom',
     swipeEnabled: false,
-  
+
 });
 
 
