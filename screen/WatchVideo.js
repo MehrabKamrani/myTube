@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollView, View, TouchableHighlight, Text,Alert, TextInput, StyleSheet, Dimensions} from 'react-native';
-import VideoPlayer from '@expo/videoplayer';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
 import { Video } from 'expo';
