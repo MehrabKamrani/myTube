@@ -120,7 +120,13 @@ static navigationOptions= ({navigation}) =>({
               shouldPlay={false}
               style={styles.photo}
               />
-              <Text style={styles.text} onPress={this.GetVideoIDFunction.bind(this,Data.VideoID)}>
+              <Text style={styles.text} onPress={this.GetVideoIDFunction.bind(
+                 this,Data.VideoID,
+                Data.Title,
+                Data.Description,
+                Data.NumViews,
+                Data.VideoPath
+                )}>
                 {`Title:${Data.Title} Views: ${Data.NumViews}`}
                 
               </Text>

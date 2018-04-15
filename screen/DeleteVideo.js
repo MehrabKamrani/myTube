@@ -248,5 +248,15 @@ export default class DeleteVideo extends BaseScreen {
                   justifyContent: 'center',
                   backgroundColor: "rgba(0, 0, 0, 0.5)",
                 },
+<<<<<<< HEAD
+=======
 
               });
+
+
+
+
+
+
+>>>>>>> 23c228788116df7ea07e90101434d2cb29b89df9
+
