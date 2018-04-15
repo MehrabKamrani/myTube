@@ -38,8 +38,8 @@ class ManageVideos extends Component {
     render() {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-  				<Button title="Add Member" onPress={() => this.props.navigation.navigate('AddMember')} />
-  				<Button title="Update/Delete Member" onPress={() => this.props.navigation.navigate('ShowAllMembers')} />
+          <Button title="Add Member" onPress={() => this.props.navigation.navigate('AddMember')} />
+          <Button title="Update/Delete Member" onPress={() => this.props.navigation.navigate('ShowAllMembers')} />
         </View>
       );
     }
@@ -48,8 +48,8 @@ class ManageVideos extends Component {
   const ManageMemberStack = StackNavigator({
     ManageMembers: { screen: ManageMembers },
     AddMember: { screen: AddMember },
-  	ShowAllMembers: { screen: ShowAllMembers },
-  	UpdateDeleteMember: { screen: UpdateDeleteMember },
+    ShowAllMembers: { screen: ShowAllMembers },
+    UpdateDeleteMember: { screen: UpdateDeleteMember },
   });
 
   const ManageVideoStack = StackNavigator({

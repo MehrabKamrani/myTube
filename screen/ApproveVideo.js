@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Alert, TextInput, Button, Text, Platform, TouchableOpacity, ListView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ScrollView, Alert, TextInput, Button, Text, Platform, TouchableOpacity, ListView, ActivityIndicator , Dimensions} from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
-import VideoPlayer from '@expo/videoplayer';
+//import VideoPlayer from '@expo/videoplayer';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
 import { Video } from 'expo';
+//import VideoPlayer from 'react-native-video-controls';
+import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
-
-var styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-};
 
 export default class ApproveVideo extends BaseScreen {
 
@@ -24,17 +19,31 @@ export default class ApproveVideo extends BaseScreen {
 
      videoID: '',
      videoPath: '',
+      mute: false,
+      shouldPlay: false,
 
    }
 
  }
+    handlePlayAndPause = () => {
+     this.setState((prevState) => ({
+        shouldPlay: !prevState.shouldPlay
+     }));
+    }
 
+    handleVolume = () => {
+     this.setState(prevState => ({
+       mute: !prevState.mute,
+     }));
+    }
  componentDidMount(){
 
       // Received Student Details Sent From Previous Activity and Set Into State.
       this.setState({ 
         videoID : this.props.navigation.state.params.VideoID,
-        videoPath : ('http://192.168.43.27/reactPhp/images/' + this.props.navigation.state.params.VideoPath),
+
+        videoPath : ('http://www.224tech.com/reactPhp/videos/' + this.props.navigation.state.params.VideoPath),
+
       })
 
     }
@@ -49,6 +58,7 @@ export default class ApproveVideo extends BaseScreen {
      let _path = s.toString();
      return _path;
    }
+
 
 
 
@@ -86,8 +96,10 @@ export default class ApproveVideo extends BaseScreen {
               }
 
 
+<<<<<<< HEAD
               rejectVideo = () =>{
                 fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
+
                   method: 'POST',
                   headers: {
                     'Accept': 'application/json',
@@ -120,7 +132,7 @@ export default class ApproveVideo extends BaseScreen {
 
 
               render() {
-
+                const { width } = Dimensions.get('window');
                 const COLOR = '#92DCE5';
                 let path = "bb.mp4";
                 console.log = path;
@@ -132,32 +144,31 @@ export default class ApproveVideo extends BaseScreen {
                 style={{ textAlign: 'center' }}
                 />;
                 return (
-                  <View style={styles.container}>
+                  <View style={styles.Maincontainer}>
                   <ScrollView style={styles.container}>
-                  <VideoPlayer
-                  videoProps={{
-                    shouldPlay: false,
-                    resizeMode: Video.RESIZE_MODE_CONTAIN,
-                    source: { 
-                      uri: 'http://www.224tech.com/reactPhp/videos/10f8915b-ea20-42ec-9b6e-45ee689ccba4.mp4',
-                    },
-                    isMuted: false,
-                  }}
-                  playIcon={icon('ios-play-outline')}
-                  pauseIcon={icon('ios-pause-outline')}
-                  fullscreenEnterIcon={icon('ios-expand-outline', 28)}
-                  fullscreenExitIcon={icon('ios-contract-outline', 28)}
-                  trackImage={require('../assets/track.png')}
-                  thumbImage={require('../assets/thumb.png')}
-                  textStyle={{
-                    color: COLOR,
-                    fontSize: 12,
-                  }}
-                  isPortrait={this.state.isPortrait}
-                  switchToLandscape={this.switchToLandscape.bind(this)}
-                  switchToPortrait={this.switchToPortrait.bind(this)}
-                  playFromPositionMillis={0}
+
+                  <Video
+                  	  source={{ uri: `${this.state.videoPath}` }}
+                      shouldPlay={this.state.shouldPlay}
+                      resizeMode="cover"
+                      style={{ width, height: 300 }}
+                      isMuted={this.state.mute}
                   />
+                  <View style={styles.controlBar}>
+                             <MaterialIcons
+                               name={this.state.mute ? "volume-mute" : "volume-up"}
+                               size={45}
+                               color="white"
+                               onPress={this.handleVolume}
+                             />
+                             <MaterialIcons
+                               name={this.state.shouldPlay ? "pause" : "play-arrow"}
+                               size={45}
+                               color="white"
+                               onPress={this.handlePlayAndPause}
+                             />
+                  </View>
+
                   </ScrollView>
 
                   <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 7}}> Do you want to approve this video </Text>
@@ -260,6 +271,29 @@ export default class ApproveVideo extends BaseScreen {
                   paddingRight: 10,
                   paddingTop: 10,
                   paddingBottom: 10,
-                }
+                },
+                backgroundVideo: {
+                  width: 300,
+                  height: 300,
+                },
+                photo: {
+                  flex:1,
+                  marginTop:5,
+                  marginBottom: 20,
+                  height: 200,
+                  width: '100%',
+                  borderRadius: 20,
+                },
+                controlBar: {
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: 45,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                },
 
               });
