@@ -44,7 +44,7 @@ export default class UpdateDeleteMember extends Component {
 
     UpdateMemberRecord = () =>{
 
-            fetch('http://10.125.196.4/videoStreaming/updateMember.php', {
+            fetch('http://www.224tech.com/reactPhp/updateMember.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -89,7 +89,7 @@ export default class UpdateDeleteMember extends Component {
 
     DeleteMemberRecord = () =>{
 
-          fetch('http://10.125.196.4/videoStreaming/deleteMember.php', {
+          fetch('http://www.224tech.com/reactPhp/deleteMember.php', {
           method: 'POST',
           headers: {
           'Accept': 'application/json',

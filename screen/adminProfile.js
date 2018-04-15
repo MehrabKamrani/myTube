@@ -119,13 +119,11 @@ componentDidMount() {
         rowData.VideoPath
         )} >
 
-        {rowData.VideoID}
         {rowData.Title}
         </Text>
         </View>}
 
         renderSeparator= {this.ListViewItemSeparator}
-        renderFooter={() => <Footer />}
         renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
         />
 
@@ -145,7 +143,6 @@ componentDidMount() {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
   				<Button title="Add Member" onPress={() => this.props.navigation.navigate('AddMember')} />
   				<Button title="Update/Delete Member" onPress={() => this.props.navigation.navigate('ShowAllMembers')} />
-          <Button title="Sign Out" onPress={() => this.props.navigation.navigate('Login')} />
         </View>
       );
     }
