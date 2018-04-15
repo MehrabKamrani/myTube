@@ -40,6 +40,7 @@ class userProfile extends Component{
   }
 
   GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
+    this.updatingViews(VideoID);
     this.props.navigation.navigate('WatchVideo', {
       VideoID : VideoID,
       Title : Title,
@@ -48,6 +49,31 @@ class userProfile extends Component{
       VideoPath : VideoPath
 
     });
+  }
+  updatingViews =(videoId) =>{
+
+          fetch('http://www.224tech.com/reactPhp/slectVideo.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+
+            videoID : videoId,
+
+          })
+
+          }).then((response) => response.json())
+              .then((responseJson) => {
+
+                // Showing response message coming from server updating records.
+                Alert.alert(responseJson);
+
+
+              }).catch((error) => {
+                console.error(error);
+              });
   }
 
   onPressButton = () => {
@@ -132,7 +158,8 @@ class userProfile extends Component{
                 style={stylesss.photo}
                 />
               <Text style={stylesss.text}
-                onPress={this.GetVideoIDFunction.bind(
+                onPress={
+                  this.GetVideoIDFunction.bind(
                 this,rowData.VideoID,
                 rowData.Title,
                 rowData.Description,
