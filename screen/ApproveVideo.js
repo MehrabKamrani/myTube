@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Alert, TextInput, Button, Text, Platform, TouchableOpacity, ListView, ActivityIndicator , Dimensions} from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
-//import VideoPlayer from '@expo/videoplayer';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
 import { Video } from 'expo';
-//import VideoPlayer from 'react-native-video-controls';
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
 
@@ -42,7 +40,7 @@ export default class ApproveVideo extends BaseScreen {
       this.setState({ 
         videoID : this.props.navigation.state.params.VideoID,
 
-        videoPath : ('http://www.224tech.com/reactPhp/videos/' + this.props.navigation.state.params.VideoPath),
+        videoPath : this.props.navigation.state.params.VideoPath,
 
       })
 
@@ -96,7 +94,6 @@ export default class ApproveVideo extends BaseScreen {
               }
 
 
-<<<<<<< HEAD
               rejectVideo = () =>{
                 fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
 
@@ -148,7 +145,7 @@ export default class ApproveVideo extends BaseScreen {
                   <ScrollView style={styles.container}>
 
                   <Video
-                  	  source={{ uri: `${this.state.videoPath}` }}
+                  	  source={{ uri: `http://www.224tech.com/reactPhp/videos/${this.state.videoPath }`}}
                       shouldPlay={this.state.shouldPlay}
                       resizeMode="cover"
                       style={{ width, height: 300 }}
