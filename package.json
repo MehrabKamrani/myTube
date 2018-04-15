@@ -9,6 +9,7 @@
     "expo": "^26.0.0",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react-native-animatable": "^1.2.4",
     "react-native-elements": "^0.18.5",
     "react-native-hyperlink": "0.0.12",
     "react-native-mediaplayer": "0.0.1",
