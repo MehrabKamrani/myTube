@@ -96,8 +96,7 @@ export default class ApproveVideo extends BaseScreen {
               }
 
 
-<<<<<<< HEAD
-              rejectVideo = () =>{
+            rejectVideo = () =>{
                 fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
 
                   method: 'POST',
