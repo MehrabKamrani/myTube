@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry,StyleSheet, View, Alert, TextInput, Button, Text, 
+import { AppRegistry,StyleSheet, View, Alert, TextInput, Button, Text,
   Platform, TouchableOpacity, ListView, ActivityIndicator} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Exponent, { Constants, ImagePicker, registerRootComponent, Video } from 'expo';
@@ -18,7 +18,7 @@ class userProfile extends Component{
   });
   constructor(props) {
     super(props);
-  
+
   this.state = {
 
       isLoading: true,
@@ -40,7 +40,7 @@ class userProfile extends Component{
   }
 
   GetVideoIDFunction=(VideoID, Title, Description, NumViews, VideoPath)=>{
-    this.props.navigation.navigate('WatchVideo', { 
+    this.props.navigation.navigate('WatchVideo', {
       VideoID : VideoID,
       Title : Title,
       Description : Description,
@@ -54,7 +54,7 @@ class userProfile extends Component{
     console.log(this.state.contentSearch);
     let formData = new FormData();
      formData.append('videoTitle', this.state.contentSearch);
-    
+
   fetch('http://www.224tech.com/reactPhp/selectSpecificVideo.php', {
             method: 'POST',
             body: formData,
@@ -62,7 +62,7 @@ class userProfile extends Component{
         'Accept': 'application/json',
         'Content-Type': 'multipart/form-data',
         },
-        
+
         })
          .then((response) => response.json())
          .then((responseJson) => {
@@ -75,12 +75,12 @@ class userProfile extends Component{
            });
          })
          .catch((error) => {
-       
+
          });
   }
-  
+
   componentDidMount() {
-    
+
    return fetch('http://www.224tech.com/reactPhp/videolistJson.php')
      .then((response) => response.json())
      .then((responseJson) => {
@@ -98,7 +98,7 @@ class userProfile extends Component{
 }
 
   render() {
-    
+
     if (this.state.isLoading) {
         return (
           <View style={{flex: 1, paddingTop: 20}}>
@@ -106,7 +106,7 @@ class userProfile extends Component{
           </View>
         );
       }
-    
+
     return (
       <View style={styless.container}>
         <TextInput
@@ -120,30 +120,30 @@ class userProfile extends Component{
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
-      
+
         <ListView
           style={styless.container}
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => 
+          renderRow={(rowData) =>
             <View style={stylesss.container}>
               <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${rowData.VideoPath}` }}
                 resizeMode="cover"
                 shouldPlay={false}
                 style={stylesss.photo}
                 />
-              <Text style={stylesss.text} 
+              <Text style={stylesss.text}
                 onPress={this.GetVideoIDFunction.bind(
-                this,rowData.VideoID, 
-                rowData.Title,  
+                this,rowData.VideoID,
+                rowData.Title,
                 rowData.Description,
                 rowData.NumViews,
                 rowData.VideoPath
-              )}> 
-                {`Title:${rowData.Title} Views: ${rowData.NumViews}`}                
+              )}>
+                {`Title:${rowData.Title} Views: ${rowData.NumViews}`}
               </Text>
             </View>
           }
-          renderSeparator={this.ListViewItemSeparator}          
+          renderSeparator={this.ListViewItemSeparator}
           renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
           />
 
@@ -156,7 +156,7 @@ class UploadVideo extends React.Component{
 	 static navigationOptions= ({navigation}) =>({
     title: 'Upload Video',
   });
-  
+
 	constructor(props) {
 
    super(props)
@@ -174,10 +174,10 @@ class UploadVideo extends React.Component{
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Videos,
     allowsEditing: true,
-    
+
       aspect : [4, 3],
     });
-  
+
   console.log(pickerResult);
 
     this.setState({TextInput_Video : pickerResult.uri })
@@ -198,7 +198,7 @@ class UploadVideo extends React.Component{
         'Accept': 'application/json',
         'Content-Type': 'multipart/form-data',
       },
-      
+
       }).then((response) => response.json())
           .then((responseJson) => {
 
@@ -214,7 +214,7 @@ class UploadVideo extends React.Component{
  GoTo_Show_PokemonList_Activity_Function = () =>
   {
     this.props.navigation.navigate('Second');
-    
+
   }
 
  render() {
@@ -224,14 +224,14 @@ class UploadVideo extends React.Component{
 
      <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 7}}> Upload Video </Text>
 
-     <TextInput       
+     <TextInput
        placeholder="Video Title"
        onChangeText={ TextInputValue => this.setState({ TextInput_VideoTitle : TextInputValue }) }
        underlineColorAndroid='transparent'
        style={styles.TextInputStyleClass}
      />
 
-    <TextInput       
+    <TextInput
        placeholder="Enter Pokemon Level"
        onChangeText={ TextInputValue => this.setState({ TextInput_VideoDescription : TextInputValue }) }
        underlineColorAndroid='transparent'
@@ -247,7 +247,7 @@ class UploadVideo extends React.Component{
     </TouchableOpacity>
 
     </View>
-           
+
    );
  }
 }
@@ -262,7 +262,7 @@ const WatchManager = StackNavigator({
 
 const UploadManager = StackNavigator({
   UploadVideo: {screen: UploadVideo},
-  
+
 });
 
 const stylesss = StyleSheet.create({
@@ -294,7 +294,7 @@ const styless = StyleSheet.create({
     backgroundColor: '#8E8E8E',
   },
   input: {
-    height: 40,    
+    height: 40,
     paddingHorizontal: 8,
     fontSize: 16,
     backgroundColor: '#FFFFFF',
@@ -314,12 +314,12 @@ const styles = StyleSheet.create({
   },
 
   MainContainer_For_Show_StudentList_Activity :{
-    
+
     flex:1,
     paddingTop: (Platform.OS == 'ios') ? 20 : 0,
     marginLeft: 5,
     marginRight: 5
-    
+
     },
 
   TextInputStyleClass: {
@@ -362,12 +362,12 @@ const styles = StyleSheet.create({
 export default TabNavigator({
 	VideoList: { screen: WatchManager },
   UploadVideo: { screen: UploadManager },
-}, 
+},
 {
-	
+
   	tabBarPosition: 'bottom',
   	swipeEnabled: false,
-	
+
 });
 
 AppRegistry.registerComponent('userProfile', () => userProfile);

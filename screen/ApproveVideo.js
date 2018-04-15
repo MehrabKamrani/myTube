@@ -32,9 +32,9 @@ export default class ApproveVideo extends BaseScreen {
  componentDidMount(){
 
       // Received Student Details Sent From Previous Activity and Set Into State.
-      this.setState({ 
+      this.setState({
         videoID : this.props.navigation.state.params.VideoID,
-        videoPath : ('http://192.168.1.103/reactPhp/images/' + this.props.navigation.state.params.VideoPath),
+        videoPath : ('http://224tech.com/reactPhp/videos/' + this.props.navigation.state.params.VideoPath),
       })
 
     }
@@ -52,7 +52,9 @@ export default class ApproveVideo extends BaseScreen {
 
    approveVideo = () =>{
 
+
     fetch('http://www.224tech.com/reactPhp/approveVideo.php', {
+
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -86,6 +88,7 @@ export default class ApproveVideo extends BaseScreen {
               rejectVideo = () =>{
 
                 fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
+
                   method: 'POST',
                   headers: {
                     'Accept': 'application/json',
@@ -120,8 +123,6 @@ export default class ApproveVideo extends BaseScreen {
               render() {
 
                 const COLOR = '#92DCE5';
-                let path = this.state.videoPath + "";
-                console.log = path;
                 const icon = (name, size = 36) => () =>
                 <Ionicons
                 name={name}

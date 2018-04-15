@@ -30,7 +30,7 @@ const VideoDetail = ({ video }) => {
 
           <View style={headerContentSyle}>
               <Text style={headerTextStyle}>{VideoID}</Text>
-              <Text>{Titel}</Text>
+              <Text>{Title}</Text>
           </View>
 
         </CardSection>  

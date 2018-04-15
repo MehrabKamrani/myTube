@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View,TouchableOpacity,
-  TextInput,Button,Keyboard, Alert } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View,TouchableOpacity,TextInput,Button,Keyboard, Alert, KeyboardAvoidingView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 export default class login extends Component {
@@ -58,28 +57,32 @@ export default class login extends Component {
 
         <View style={styles.MainContainer}>
 
-          <Text style={styles.TextTag}>
-              Login
-          </Text>
+					<KeyboardAvoidingView behavior="padding">
 
-          <TextInput style={styles.InputFlied}
-            placeholder="Enter Username"
-            onChangeText={TextInputValue =>
-              this.setState({ TextInput_username: TextInputValue })}
-          />
+	          <Text style={styles.TextTag}>
+	              Login
+	          </Text>
 
-          <TextInput style={styles.InputFlied}
-            placeholder="Enter Password"
-            onChangeText={TextInputValue =>
-              this.setState({ TextInput_password: TextInputValue })}
-          />
-          <Button style={styles.Buttons}
-            onPress={this.displayMessage} title="Submit" color="blue" />
+	          <TextInput style={styles.InputFlied}
+	            placeholder="Enter Username"
+	            onChangeText={TextInputValue =>
+	              this.setState({ TextInput_username: TextInputValue })}
+	          />
 
-          <TouchableOpacity
-            onPress={()=> navigate('SignUP')}>
-            <Text style={styles.signUpBtnText}>Do not have account yet?</Text>
-          </TouchableOpacity>
+	          <TextInput secureTextEntry={true} style={styles.InputFlied}
+	            placeholder="Enter Password"
+	            onChangeText={TextInputValue =>
+	              this.setState({ TextInput_password: TextInputValue })}
+	          />
+	          <Button style={styles.Buttons}
+	            onPress={this.displayMessage} title="Submit" color="blue" />
+
+	          <TouchableOpacity
+	            onPress={()=> navigate('SignUP')}>
+	            <Text style={styles.signUpBtnText}>Do not have account yet?</Text>
+	          </TouchableOpacity>
+
+					</KeyboardAvoidingView>
 
         </View>
 
