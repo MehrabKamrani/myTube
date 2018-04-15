@@ -61,7 +61,7 @@ ListViewItemSeparator = () => {
 componentDidMount() {
 
 
- return fetch('http://192.168.0.5/videoStreaming/videolistJson.php')
+ return fetch('http://224tech.com/reactPhp/videolistJson.php')
 
  .then((response) => response.json())
  .then((responseJson) => {
@@ -98,7 +98,7 @@ componentDidMount() {
 
     renderRow={(rowData) =>
       <View style={styles.container}>
-      <Video source={{ uri: `http://192.168.0.5/videoStreaming/images/${rowData.VideoPath}` }}
+      <Video source={{ uri: `http://224tech.com/reactPhp/videos/${rowData.VideoPath}` }}
 
       resizeMode="cover"
       shouldPlay={false}

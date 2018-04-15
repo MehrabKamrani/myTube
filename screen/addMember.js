@@ -18,7 +18,7 @@ export default class addMember extends Component {
   }
 
   displayMessage = () => {
-    fetch('http://192.168.0.5/videoStreaming/addMember.php', {
+    fetch('http://224tech.com/reactPhp/addMember.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
