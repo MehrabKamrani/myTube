@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry,StyleSheet, View, Alert, TextInput, Button, Text,
   Platform, TouchableOpacity, ListView, ActivityIndicator} from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, NavigationActions} from 'react-navigation';
 import Exponent, { Constants, ImagePicker, registerRootComponent, Video } from 'expo';
 //import axios from 'axios';
 import VideoDetail from './VideoDetail';
@@ -205,6 +205,7 @@ class UploadVideo extends React.Component{
             // Showing response message coming from server after inserting records.
             Alert.alert(responseJson);
 
+            
           }).catch((error) => {
             console.error(error);
           });

@@ -86,7 +86,7 @@ export default class CustomScreen extends BaseScreen {
       <View style={styles.container}>
         <ScrollView style={styles.container}>
           <Video source={{ uri: `http://www.224tech.com/reactPhp/videos/${this.state.Text_VideoPath}` }}
-            resizeMode="cover"
+            resizeMode="contain"
             shouldPlay={true}
             style={stylesss.photo}            
           />
@@ -121,6 +121,8 @@ const stylesss = StyleSheet.create({
 
   photo: {
     flex:1,
+    marginTop:5,
+    marginBottom: 20,
     height: 200,
     width: '100%',
     borderRadius: 20,
