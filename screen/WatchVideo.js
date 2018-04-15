@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { ScrollView, View, TouchableHighlight, Text,Alert, TextInput, StyleSheet, Dimensions} from 'react-native';
+=======
+import { StyleSheet,ScrollView, View, TouchableHighlight, Text,Alert, TextInput} from 'react-native';
+>>>>>>> 6dc7fac02847eab2996a4704da8d337a8e3a82a2
 import VideoPlayer from '@expo/videoplayer';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';

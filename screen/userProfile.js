@@ -259,7 +259,7 @@ class UploadVideo extends React.Component{
      />
 
     <TextInput
-       placeholder="Enter Pokemon Level"
+       placeholder="Video Description."
        onChangeText={ TextInputValue => this.setState({ TextInput_VideoDescription : TextInputValue }) }
        underlineColorAndroid='transparent'
        style={styles.TextInputStyleClass}
