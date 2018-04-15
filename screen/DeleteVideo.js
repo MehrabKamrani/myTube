@@ -14,7 +14,7 @@ var styles = {
   },
 };
 
-export default class ApproveVideo extends BaseScreen {
+export default class DeleteVideo extends BaseScreen {
 
   constructor(props) {
 
@@ -51,28 +51,25 @@ export default class ApproveVideo extends BaseScreen {
    }
 
 
+   deleteVideo = () =>{
+    fetch('http://www.224tech.com/reactPhp/deleteVideo.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
 
-              approveVideo = () =>{
+        videoID : this.state.videoID,
 
-                fetch('http://www.224tech.com/reactPhp/approveVideo.php', {
-                  method: 'POST',
-                  headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
+      })
 
-                    videoID : this.state.videoID,
-
-                  })
-
-                }).then((response) => response.json())
-                .then((responseJson) => {
-
+    }).then((response) => response.json())
+    .then((responseJson) => {
                   // Showing response message coming from server updating records.
                   Alert.alert(responseJson);
 
-                  if (responseJson == 'Success') {
+                  if (responseJson == 'Deleted') {
                     this.props.navigation.dispatch(NavigationActions.reset({
                       index: 0,
                       actions: [NavigationActions.navigate({ routeName: 'ManageVideos'})]
@@ -82,44 +79,9 @@ export default class ApproveVideo extends BaseScreen {
                 }).catch((error) => {
                   console.error(error);
                 });
-
               }
 
-
-              rejectVideo = () =>{
-                fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
-                  method: 'POST',
-                  headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-
-                    videoID : this.state.videoID,
-
-                  })
-
-                }).then((response) => response.json())
-                .then((responseJson) => {
-
-                  // Showing response message coming from server updating records.
-                  Alert.alert(responseJson);
-
-                  if (responseJson == 'Success') {
-                    this.props.navigation.dispatch(NavigationActions.reset({
-                      index: 0,
-                      actions: [NavigationActions.navigate({ routeName: 'ManageVideos'})]
-                    }));
-                  }
-
-                }).catch((error) => {
-                  console.error(error);
-                });
-
-              }
-
-
-              render() {
+        render() {
 
                 const COLOR = '#92DCE5';
                 let path = "bb.mp4";
@@ -160,7 +122,7 @@ export default class ApproveVideo extends BaseScreen {
                   />
                   </ScrollView>
 
-                  <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 7}}> Do you want to approve this video </Text>
+                  <Text style={{fontSize: 20, textAlign: 'center', marginBottom: 7}}> Do you want to delete this video </Text>
 
                   <TextInput
 
@@ -176,23 +138,13 @@ export default class ApproveVideo extends BaseScreen {
                   />
 
 
+                  
+                  <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.deleteVideo} >
 
-                  <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.approveVideo} >
-
-                  <Text style={styles.TextStyle}> APPROVE  </Text>
-
-                  </TouchableOpacity>
-
-
-
-                  <TouchableOpacity activeOpacity = { .4 } style={styles.TouchableOpacityStyle} onPress={this.rejectVideo} >
-
-                  <Text style={styles.TextStyle}> REJECT </Text>
+                  <Text style={styles.TextStyle}> DELETE  </Text>
 
                   </TouchableOpacity>
 
-
-                 
 
                   </View>
 
