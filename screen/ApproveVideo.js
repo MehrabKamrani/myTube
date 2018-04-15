@@ -52,7 +52,7 @@ export default class ApproveVideo extends BaseScreen {
 
    approveVideo = () =>{
 
-    fetch('http://192.168.1.103/reactPhp/approveVideo.php', {
+    fetch('http://www.224tech.com/reactPhp/approveVideo.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -85,7 +85,7 @@ export default class ApproveVideo extends BaseScreen {
 
               rejectVideo = () =>{
 
-                fetch('http://192.168.1.103/reactPhp/rejectVideo.php', {
+                fetch('http://www.224tech.com/reactPhp/rejectVideo.php', {
                   method: 'POST',
                   headers: {
                     'Accept': 'application/json',

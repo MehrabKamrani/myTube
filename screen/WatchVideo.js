@@ -91,7 +91,7 @@ export default class CustomScreen extends BaseScreen {
               shouldPlay: false,
               resizeMode: Video.RESIZE_MODE_CONTAIN,
               source: {
-                uri: `http://www.224tech.com/reactPhp/videos/{this.state.Text_VideoPath}`,
+                uri: `${this.state.Text_VideoPath}`,
               },
               isMuted: false,
             }}
