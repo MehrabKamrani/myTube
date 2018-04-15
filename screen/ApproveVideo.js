@@ -5,7 +5,7 @@ import { StackNavigator, NavigationActions } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
 import { Video } from 'expo';
-import VideoPlayer from 'react-native-video-controls';
+//import VideoPlayer from 'react-native-video-controls';
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
 

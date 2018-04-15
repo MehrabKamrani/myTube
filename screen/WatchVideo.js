@@ -43,7 +43,7 @@ export default class CustomScreen extends BaseScreen {
     // Received Student Details Sent From Previous Activity and Set Into State.
     this.setState({
       videoID : this.props.navigation.state.params.VideoID,
-      videoPath : ('http://www.224tech.com/reactPhp/videos/' + this.props.navigation.state.params.VideoPath),
+      videoPath : this.props.navigation.state.params.VideoPath,
     })
 
 
@@ -66,7 +66,7 @@ export default class CustomScreen extends BaseScreen {
       <View style={styles.container}>
         <ScrollView style={styles.container}>
           <Video
-              source={{ uri: `${this.state.videoPath}` }}
+              source={{ uri: `http://www.224tech.com/reactPhp/videos/${this.state.videoPath }`}}
               shouldPlay={this.state.shouldPlay}
               resizeMode="cover"
               style={{ width, height: 300 }}
@@ -94,19 +94,9 @@ export default class CustomScreen extends BaseScreen {
 }
 
 
-const stylesss = StyleSheet.create({
 
-  photo: {
-    flex:1,
-    marginTop:5,
-    marginBottom: 20,
-    height: 200,
-    width: '100%',
-    borderRadius: 20,
 
 const styles = StyleSheet.create({
-
-
   controlBar: {
     position: 'absolute',
     bottom: 0,
@@ -117,7 +107,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-
   },
 
 });
