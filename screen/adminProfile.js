@@ -8,6 +8,7 @@ import { StackNavigator, TabNavigator, SwitchNavigator} from 'react-navigation';
 import AddMember from './addMember';
 import ShowAllMembers from './showAllMembers';
 import UpdateDeleteMember from './updateDeleteMember';
+import Login from './login.js';
 
 //import Row from '../components/Row'
 import ApproveVideo from './ApproveVideo'
@@ -144,6 +145,7 @@ componentDidMount() {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
   				<Button title="Add Member" onPress={() => this.props.navigation.navigate('AddMember')} />
   				<Button title="Update/Delete Member" onPress={() => this.props.navigation.navigate('ShowAllMembers')} />
+          <Button title="Sign Out" onPress={() => this.props.navigation.navigate('Login')} />
         </View>
       );
     }
